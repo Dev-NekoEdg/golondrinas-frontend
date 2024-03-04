@@ -1,0 +1,10 @@
+.customFooter{
+  text-align: center;
+  width: 100%;
+  padding-left: 15%;
+  padding-right: 15%;
+  color: #ffffff;
+  background-color: royalblue;
+  bottom: 0;
+  position: relative;
+}

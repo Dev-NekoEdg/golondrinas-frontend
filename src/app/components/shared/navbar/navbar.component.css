@@ -1,0 +1,9 @@
+.customNavBar{
+  width: auto;
+  background-color: royalblue;
+  border-style: solid;
+  border-width: 3px;
+  border-color: red;
+  padding-left: 15%;
+  padding-right: 15%;
+}
