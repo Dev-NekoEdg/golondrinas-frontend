@@ -1,8 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
-html,body{
+/* html,body{
 width: auto;
 height: auto;
 margin: 0;
 padding: 0;
+} */
 /* background-color: blueviolet; */
+body {
+  height: 100vh;
+  position: relative;
+  width: auto;
+  margin: 0;
+  padding: 0;
 }
