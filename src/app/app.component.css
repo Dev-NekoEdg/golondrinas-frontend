@@ -1,7 +1,7 @@
-.innerBody{
+/* .innerBody{
   position: relative;
   height: 100vh;
-}
+} */
 
 .mainContainer{
   background-color: #4169e1;
@@ -10,6 +10,15 @@
   border-style: solid;
   border-color: #000000;
   width: auto;
-  position: relative;
-  padding-bottom: 11%;
+  padding-bottom: 1em;
+}
+.customFooter{
+  text-align: center;
+  padding-left: 15%;
+  padding-right: 15%;
+  color: #ffffff;
+  background-color: royalblue;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }

@@ -7,9 +7,13 @@ padding: 0;
 } */
 /* background-color: blueviolet; */
 body {
-  height: 100vh;
+  min-height: 100vh;
   position: relative;
   width: auto;
   margin: 0;
   padding: 0;
+};
+footer {
+  position: absolute;
+  bottom: 0;
 }
