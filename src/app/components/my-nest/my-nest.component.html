@@ -1,3 +1,30 @@
 <p>my-nest works!</p>
+<div class="row">
+  <div class="col-4">
+    <div class="listConversations">
+      <div class="card">
+        <div class="row g-0">
+          <div class="col-4 ">
+            <img src="https://storedatanekoedg.blob.core.windows.net/public-container/nekoedg_a_fliying_swallow_minimal_a5cde8ad-3f37-404c-a6c5-7831effd55b9.png"
+            class="img-fluid rounded-start-circle" alt="...">
+          </div>
+          <div class="col-8">
+            <div class="card-body">
+              <h5>Card title</h5>
+              <p class="card-text">This content is a little bit longer.</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-{{ this.conversations | json }}
+  <div class="col-8">
+    <div class="containerConversations">
+      <pre>
+        {{ this.conversations | json }}
+      </pre>
+    </div>
+  </div>
+</div>

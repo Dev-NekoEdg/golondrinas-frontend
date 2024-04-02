@@ -1,0 +1,11 @@
+.listConversations {
+  /* width: 30%; */
+  background-color: #ffffff;
+  padding-right: 5px;
+}
+
+.containerConversations{
+  margin: 2px;
+  background-color: aqua;
+
+}
