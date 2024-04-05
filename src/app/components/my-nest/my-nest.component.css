@@ -7,5 +7,9 @@
 .containerConversations{
   margin: 2px;
   background-color: aqua;
+}
 
+.textLastUpdate{
+  font-size: smaller;
+  bottom: 0;
 }
