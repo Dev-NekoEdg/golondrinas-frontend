@@ -2,17 +2,17 @@
 <div class="row">
   <div class="col-4">
     <div class="listConversations">
-      <div class="card">
+      <div *ngFor="let conv of conversations" class="card cardHover" style="background-color: hsla(0, 0%, 98%, 0.2)">
         <div class="row g-0">
           <div class="col-sm-4 center">
-            <img src="https://storedatanekoedg.blob.core.windows.net/public-container/nekoedg_a_fliying_swallow_minimal_a5cde8ad-3f37-404c-a6c5-7831effd55b9.png"
+            <img src="{{conv.lastMessage?.profilePic}}"
             class="img-fluid rounded-circle" alt="...">
           </div>
           <div class="col-sm-8">
-            <div class="border-danger-subtle">
-              <span class="align-self-end">persona</span>
-              <div>ultimo texto</div>
-              <div class="text-muted align-self-end">Last updated 3 mins ago</div>
+            <div class="d-block">
+              <span class="align-self-end">{{conv.lastMessage?.userName}}</span>
+              <div>{{conv.lastMessage?.body | slice:0:15}}...</div>
+              <div class="text-muted align-self-end">{{conv.lastRead | date:'medium'}}</div>
               <!-- <h5>Card title</h5>
                 <p class="card-text">This content is a little bit longer.</p>
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->

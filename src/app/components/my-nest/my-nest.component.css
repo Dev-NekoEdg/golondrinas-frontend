@@ -13,3 +13,10 @@
   font-size: smaller;
   bottom: 0;
 }
+.cardHover:hover {
+  background-color: rgb(255, 0, 0);
+  border-color: red;
+  border-width: 5px;
+  opacity: 50%;
+  padding: 10px;
+  }
