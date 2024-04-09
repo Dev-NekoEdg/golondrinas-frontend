@@ -14,8 +14,9 @@
   bottom: 0;
 }
 .cardHover:hover {
-  background-color: rgb(255, 0, 0);
-  border-color: red;
+  background-color: rgb(137, 83, 230);
+  font-style: oblique;
+  border-color: royalblue;
   border-width: 5px;
   opacity: 50%;
   padding: 10px;

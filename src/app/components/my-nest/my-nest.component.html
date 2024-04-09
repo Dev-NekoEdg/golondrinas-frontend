@@ -2,7 +2,7 @@
 <div class="row">
   <div class="col-4">
     <div class="listConversations">
-      <div *ngFor="let conv of conversations" class="card cardHover" style="background-color: hsla(0, 0%, 98%, 0.2)">
+      <div *ngFor="let conv of conversations" class="card cardHover" (click)="loadConversation()">
         <div class="row g-0">
           <div class="col-sm-4 center">
             <img src="{{conv.lastMessage?.profilePic}}"
