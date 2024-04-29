@@ -9,9 +9,10 @@ import { ConversationService } from 'src/app/services/conversation.service';
   styleUrls: ['./my-nest.component.css']
 })
 export class MyNestComponent implements OnInit {
-  private userId = 'testing-from-angularApp';
+  private userId = 'mock-user-angularApp';
   public conversations: SummaryConversations[];
   public conversation: UniqueConversation;
+  public conversationActive: boolean;
 
 
   constructor(
@@ -19,6 +20,7 @@ export class MyNestComponent implements OnInit {
   ) {
     this.conversations = [];
     this.conversation = this.emptyConversations();
+    this.conversationActive = false;
   }
 
   ngOnInit(): void {
@@ -34,6 +36,7 @@ export class MyNestComponent implements OnInit {
   }
 
   loadConversation(conversationId: string) {
+    console.log('load conversation with id: ' + conversationId);
     this.service.getConversation(this.userId, conversationId).subscribe(
       (data) => {
         console.log(data);

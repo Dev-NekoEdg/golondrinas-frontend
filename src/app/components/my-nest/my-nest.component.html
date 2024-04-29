@@ -26,9 +26,16 @@
 
   <div class="col-8">
     <div class="containerConversations">
-      <pre>
-        {{ this.conversations | json }}
-      </pre>
+      <div *ngIf="conversationActive">
+        <pre>
+          {{ this.conversations | json }}
+        </pre>
+      </div>
+      <div *ngIf="!conversationActive">
+        <pre>
+          {{ this.conversation | json }}
+        </pre>
+      </div>
     </div>
   </div>
 </div>
