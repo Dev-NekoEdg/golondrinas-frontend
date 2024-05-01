@@ -32,7 +32,7 @@
         </pre>
       </div> -->
       <div *ngIf="conversationActive">
-        <div *ngFor="let message of conversation.messages" class="row justify-content-between">
+        <div *ngFor="let message of conversation.messages" class="d-block">
           <div [ngClass]="{'messageBoxEmiter':message.owner ,'messageBoxReciber': !message.owner}">
             {{message.message}}
           </div>

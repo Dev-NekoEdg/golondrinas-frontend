@@ -39,17 +39,10 @@ export class MyNestComponent implements OnInit {
   loadConversation(conversationId: string) {
     console.log('load conversation with id: ' + conversationId);
     this.service.getConversation(this.userId, conversationId).subscribe(
-      (data) => {
-        // console.log(data);
-        this.conversation.messages == data.messages.map(item=> {
-          return {
-            createdBy: item.createdBy,
-            createdAt: item.createdAt,
-            message: 'Test: ' + item.message,
-            lastReadIt: item.lastReadIt,
-            owner: (item.createdBy === this.userId)
-          };
-        });
+      (response) => {
+         console.log(response);
+         this.conversation = response;
+         this.conversation.messages.forEach(item=> { item.owner = (item.createdBy === this.userId)});
         console.log('obj conversation afeter map.')
         console.log(this.conversation);
       }
