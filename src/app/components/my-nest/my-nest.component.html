@@ -26,15 +26,16 @@
 
   <div class="col-8">
     <div class="containerConversations">
-      <div *ngIf="conversationActive">
+      <!-- <div *ngIf="conversationActive">
         <pre>
           {{ this.conversations | json }}
         </pre>
-      </div>
-      <div *ngIf="!conversationActive">
-        <pre>
-          {{ this.conversation | json }}
-        </pre>
+      </div> -->
+      <div *ngIf="conversationActive">
+        <div *ngFor="let message of conversation.messages" class="row justify-content-between">
+          <div [ngClass]="{'messageBoxEmiter':message.owner ,'messageBoxReciber': !message.owner}">
+            {{message.message}}
+          </div>
       </div>
     </div>
   </div>

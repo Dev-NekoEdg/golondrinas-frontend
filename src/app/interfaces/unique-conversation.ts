@@ -2,7 +2,7 @@ export interface UniqueConversation {
   id: string;
   totalMessages: number;
   createdAt: Date;
-  message: Message[];
+  messages: Message[];
 }
 
 export interface Message {
@@ -10,4 +10,5 @@ export interface Message {
   createdAt: Date;
   message: string;
   lastReadIt: Date;
+  owner: Boolean;
 }

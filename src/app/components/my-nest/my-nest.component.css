@@ -4,15 +4,16 @@
   padding-right: 5px;
 }
 
-.containerConversations{
+.containerConversations {
   margin: 2px;
   background-color: aqua;
 }
 
-.textLastUpdate{
+.textLastUpdate {
   font-size: smaller;
   bottom: 0;
 }
+
 .cardHover:hover {
   background-color: rgb(137, 83, 230);
   font-style: oblique;
@@ -21,6 +22,15 @@
   border-width: 5px;
   opacity: 50%;
   padding: 10px;
-  }
+}
 
+.messageBoxEmiter {
+  background-color: blueviolet;
+  margin: 1% 0% 1% 40%;
+  color: black;
+}
 
+.messageBoxReciber {
+  background-color: white;
+  margin: 1% 40% 1% 0%,
+}

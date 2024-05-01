@@ -31,7 +31,8 @@ export class MyNestComponent implements OnInit {
     this.service.getConversations(this.userId).subscribe(
       (data) => {
         console.log(data);
-        this.conversations = data;
+        this.conversations = data
+        this.conversationActive = true;
       });
   }
 
@@ -39,8 +40,18 @@ export class MyNestComponent implements OnInit {
     console.log('load conversation with id: ' + conversationId);
     this.service.getConversation(this.userId, conversationId).subscribe(
       (data) => {
-        console.log(data);
-        this.conversation = data;
+        // console.log(data);
+        this.conversation.messages == data.messages.map(item=> {
+          return {
+            createdBy: item.createdBy,
+            createdAt: item.createdAt,
+            message: 'Test: ' + item.message,
+            lastReadIt: item.lastReadIt,
+            owner: (item.createdBy === this.userId)
+          };
+        });
+        console.log('obj conversation afeter map.')
+        console.log(this.conversation);
       }
     );
 
@@ -55,7 +66,7 @@ export class MyNestComponent implements OnInit {
       id: '',
       totalMessages: 0,
       createdAt: new Date(),
-      message: []
+      messages: []
     };
   }
 }
