@@ -32,9 +32,10 @@
         </pre>
       </div> -->
       <div *ngIf="conversationActive">
-        <div *ngFor="let message of conversation.messages" class="d-block">
+        <div *ngFor="let message of conversation.messages" class="d-inline">
           <div [ngClass]="{'messageBoxEmiter':message.owner ,'messageBoxReciber': !message.owner}">
-            {{message.message}}
+            <p>{{message.message}}</p>
+            <small class="smallDate">{{ message.createdAt | date:'dd/MM/yy, h:mm a' }}</small>
           </div>
       </div>
     </div>

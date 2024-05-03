@@ -26,12 +26,17 @@
 }
 
 .messageBoxEmiter {
-  background-color: blueviolet;
+  background-color: rgb(43, 119, 226);
   margin: 1% 0% 1% 40%;
   color: black;
 }
 
 .messageBoxReciber {
-  background-color: white;
-  margin: 1% 40% 1% 0%,
+  background-color: rgb(4, 223, 231);
+  margin: 1% 40% 1% 0%;
+}
+
+.smallDate{
+  font-size: x-small;
+  color: rgb(128, 128, 128);
 }
