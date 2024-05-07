@@ -35,7 +35,10 @@
         <div *ngFor="let message of conversation.messages" class="d-inline">
           <div [ngClass]="{'messageBoxEmiter':message.owner ,'messageBoxReciber': !message.owner}">
             <p>{{message.message}}</p>
-            <small class="smallDate">{{ message.createdAt | date:'dd/MM/yy, h:mm a' }}</small>
+            <div class="divInfoBubbleChat" >
+              <span class="smallDate">{{ message.createdAt | date:'dd/MM/yy, h:mm a' }}</span>
+              <i [ngClass]="{'bi bi-check info':message.read ,'bi bi-check-all primary': !message.read}"class=""></i>
+            </div>
           </div>
       </div>
     </div>

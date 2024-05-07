@@ -39,4 +39,14 @@
 .smallDate{
   font-size: x-small;
   color: rgb(128, 128, 128);
+  margin-right: 3%;
 }
+
+.divInfoBubbleChat{
+  border-style: solid;
+  border-color: red;
+  border-width: 1px;
+  text-align: right ;
+}
+
+

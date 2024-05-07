@@ -9,6 +9,6 @@ export interface Message {
   createdBy: string;
   createdAt: Date;
   message: string;
-  lastReadIt: Date;
+  read: Boolean;
   owner: Boolean;
 }
