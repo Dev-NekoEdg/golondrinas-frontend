@@ -8,6 +8,9 @@
   margin: 2px;
   padding: 2px;
   background-color: aqua;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  max-height: 80vh;
 }
 
 .textLastUpdate {
@@ -49,4 +52,10 @@
   text-align: right ;
 }
 
+.newMessageBox{
+  width: 100%;
+  border-color: red;
+  border-width: 1px;
+  border-style: solid;
+}
 
