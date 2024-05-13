@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SummaryConversations } from 'src/app/interfaces/summary-conversations';
 import { UniqueConversation } from 'src/app/interfaces/unique-conversation';
 import { ConversationService } from 'src/app/services/conversation.service';
+import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-my-nest',
@@ -13,14 +14,20 @@ export class MyNestComponent implements OnInit {
   public conversations: SummaryConversations[];
   public conversation: UniqueConversation;
   public conversationActive: boolean;
+  public conversationId:string;
+  public formNewText: FormGroup;
+
 
 
   constructor(
-    private service: ConversationService
+    private service: ConversationService,
+    private formBuilder: FormBuilder
   ) {
     this.conversations = [];
     this.conversation = this.emptyConversations();
     this.conversationActive = false;
+    this.conversationId='';
+    this.formNewText = this.createForm();
   }
 
   ngOnInit(): void {
@@ -36,18 +43,31 @@ export class MyNestComponent implements OnInit {
       });
   }
 
+  createForm(){
+    return this.formBuilder.group({
+      newText: ['']
+  });
+  }
+
   loadConversation(conversationId: string) {
     console.log('load conversation with id: ' + conversationId);
     this.service.getConversation(this.userId, conversationId).subscribe(
       (response) => {
-         console.log(response);
-         this.conversation = response;
-         this.conversation.messages.forEach(item=> { item.owner = (item.createdBy === this.userId)});
+        console.log(response);
+        this.conversation = response;
+        this.conversation.messages.forEach(item => { item.owner = (item.createdBy === this.userId) });
         console.log('obj conversation afeter map.')
         console.log(this.conversation);
       }
     );
+  }
 
+  sendNewMessage() {
+    console.log('conversation id: ' + this.conversationId);
+    console.log({ conversationId: this.conversationId, message: this.formNewText.get('newText')?.value });
+    this.formNewText.reset({
+      newText:''
+    });
   }
 
   emptySummaryConversations() {

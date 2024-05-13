@@ -5,8 +5,7 @@
       <div *ngFor="let conv of conversations" class="card cardHover" (click)="loadConversation(conv.id)">
         <div class="row g-0">
           <div class="col-sm-4 center">
-            <img src="{{conv.lastMessage?.profilePic}}"
-            class="img-fluid rounded-circle" alt="...">
+            <img src="{{conv.lastMessage?.profilePic}}" class="img-fluid rounded-circle" alt="...">
           </div>
           <div class="col-sm-8">
             <div class="d-block">
@@ -17,7 +16,7 @@
               <!-- <h5>Card title</h5>
                 <p class="card-text">This content is a little bit longer.</p>
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
-              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -35,15 +34,18 @@
         <div *ngFor="let message of conversation.messages" class="d-inline">
           <div [ngClass]="{'messageBoxEmiter':message.owner ,'messageBoxReciber': !message.owner}">
             <p>{{message.message}}</p>
-            <div class="divInfoBubbleChat" >
+            <div class="divInfoBubbleChat">
               <span class="smallDate">{{ message.createdAt | date:'dd/MM/yy, h:mm a' }}</span>
-              <i [ngClass]="{'bi bi-check info':message.read ,'bi bi-check-all primary': !message.read}"class=""></i>
+              <i [ngClass]="{'bi bi-check info':message.read ,'bi bi-check-all primary': !message.read}" class=""></i>
             </div>
           </div>
+        </div>
+      </div>
+      <div class="newMessageBox input-group mb-3">
+        <form [formGroup]="formNewText">
+          <input type="text" class="form-control" formControlName="newText" placeholder="Say Hi!">
+          <input type="button" class="btn btn-outline-primary" name="newText" ngModel value="Send" (click)="sendNewMessage()">
+        </form>
       </div>
     </div>
-  <div class="newMessageBox">
-
   </div>
-  </div>
-</div>
