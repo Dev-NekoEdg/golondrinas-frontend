@@ -41,11 +41,18 @@
           </div>
         </div>
       </div>
-      <div class="newMessageBox input-group mb-3">
-        <form [formGroup]="formNewText">
-          <input type="text" class="form-control" formControlName="newText" placeholder="Say Hi!">
-          <input type="button" class="btn btn-outline-primary" name="newText" ngModel value="Send" (click)="sendNewMessage()">
-        </form>
-      </div>
+    </div>
+    <div class="newMessageBox">
+      <form [formGroup]="formNewText">
+      <div class="input-group mb-3">
+          <input type="text" class="form-control" formControlName="newText" placeholder="Say Hi!"
+          aria-describedby="button-send" aria-label="Say Hi!">
+          <button type="button" class="btn btn-primary" name="newText" value="Send"
+          id="button-send"
+          (click)="sendNewMessage()">
+          Send
+        </button>
+        </div>
+      </form>
     </div>
   </div>
