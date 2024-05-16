@@ -30,7 +30,7 @@
           {{ this.conversations | json }}
         </pre>
       </div> -->
-      <div *ngIf="conversationActive">
+      <div id="divDisplayConversation" *ngIf="conversationActive">
         <div *ngFor="let message of conversation.messages" class="d-inline">
           <div [ngClass]="{'messageBoxEmiter':message.owner ,'messageBoxReciber': !message.owner}">
             <p>{{message.message}}</p>
@@ -42,11 +42,12 @@
         </div>
       </div>
     </div>
-    <div class="newMessageBox">
-      <form [formGroup]="formNewText">
-      <div class="input-group mb-3">
-          <input type="text" class="form-control" formControlName="newText" placeholder="Say Hi!"
-          aria-describedby="button-send" aria-label="Say Hi!">
+    <div *ngIf="conversationActive" class="newMessageBox" >
+      <form [formGroup]="formNewText" >
+      <div class="input-group mb-3" >
+          <input type="text" class="form-control" formControlName="newText"
+          placeholder="Say Hi!"
+          aria-label="Say Hi!" aria-describedby="button-send">
           <button type="button" class="btn btn-primary" name="newText" value="Send"
           id="button-send"
           (click)="sendNewMessage()">

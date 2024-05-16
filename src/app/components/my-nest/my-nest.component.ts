@@ -14,7 +14,7 @@ export class MyNestComponent implements OnInit {
   public conversations: SummaryConversations[];
   public conversation: UniqueConversation;
   public conversationActive: boolean;
-  public conversationId:string;
+  public conversationId: string;
   public formNewText: FormGroup;
 
 
@@ -26,31 +26,39 @@ export class MyNestComponent implements OnInit {
     this.conversations = [];
     this.conversation = this.emptyConversations();
     this.conversationActive = false;
-    this.conversationId='';
+    this.conversationId = '';
     this.formNewText = this.createForm();
   }
 
   ngOnInit(): void {
     this.loadConversations();
+    this.test();
   }
-
+  test() {
+    console.log('scrollTop = scrollHeight');
+    const divConversation = document.getElementById('divDisplayConversation');
+    if (divConversation != null || divConversation != undefined) {
+      divConversation.scrollTop = divConversation.scrollHeight;;
+    }
+  }
   loadConversations() {
     this.service.getConversations(this.userId).subscribe(
       (data) => {
         console.log(data);
         this.conversations = data
-        this.conversationActive = true;
       });
   }
 
-  createForm(){
+  createForm() {
     return this.formBuilder.group({
       newText: ['']
-  });
+    });
   }
 
   loadConversation(conversationId: string) {
     console.log('load conversation with id: ' + conversationId);
+    this.conversationId = conversationId;
+    this.conversationActive = true;
     this.service.getConversation(this.userId, conversationId).subscribe(
       (response) => {
         console.log(response);
@@ -58,15 +66,18 @@ export class MyNestComponent implements OnInit {
         this.conversation.messages.forEach(item => { item.owner = (item.createdBy === this.userId) });
         console.log('obj conversation afeter map.')
         console.log(this.conversation);
+        this.test();
       }
     );
+
+    // this.test();
   }
 
   sendNewMessage() {
     console.log('conversation id: ' + this.conversationId);
     console.log({ conversationId: this.conversationId, message: this.formNewText.get('newText')?.value });
     this.formNewText.reset({
-      newText:''
+      newText: ''
     });
   }
 

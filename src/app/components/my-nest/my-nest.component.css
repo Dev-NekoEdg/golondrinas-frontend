@@ -11,6 +11,7 @@
   overflow-x: hidden;
   overflow-y: scroll;
   max-height: 80vh;
+  scroll-behavior: smooth;
 }
 
 .textLastUpdate {
