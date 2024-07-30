@@ -30,9 +30,9 @@
           {{ this.conversations | json }}
         </pre>
       </div> -->
-      <div id="divDisplayConversation" *ngIf="conversationActive">
+      <div id="divDisplayConversation" *ngIf="conversationActive" class="h-100">
         <div *ngFor="let message of conversation.messages" class="d-inline">
-          <div [ngClass]="{'messageBoxEmiter':message.owner ,'messageBoxReciber': !message.owner}">
+          <div class="messageBoxDefault" [ngClass]="{'messageBoxEmiter':message.owner ,'messageBoxReciber': !message.owner}">
             <p>{{message.message}}</p>
             <div class="divInfoBubbleChat">
               <span class="smallDate">{{ message.createdAt | date:'dd/MM/yy, h:mm a' }}</span>

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { SummaryConversations } from 'src/app/interfaces/summary-conversations';
-import { UniqueConversation } from 'src/app/interfaces/unique-conversation';
+import { Message, UniqueConversation } from 'src/app/interfaces/unique-conversation';
 import { ConversationService } from 'src/app/services/conversation.service';
 import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 
@@ -20,6 +20,7 @@ export class MyNestComponent implements OnInit {
 
 
   constructor(
+    private elRef: ElementRef,
     private service: ConversationService,
     private formBuilder: FormBuilder
   ) {
@@ -28,6 +29,14 @@ export class MyNestComponent implements OnInit {
     this.conversationActive = false;
     this.conversationId = '';
     this.formNewText = this.createForm();
+  }
+  ngAfterViewChecked(): void {
+    //divDisplayConversation
+    var div = this.elRef.nativeElement.querySelector('divDisplayConversation');
+    console.log('ngAfterViewChecked');
+    // console.log({name: 'divDisplayConversation', control: div});
+    // div.scrollTop = div.scrollHeight;
+    // throw new Error('Method not implemented.');
   }
 
   ngOnInit(): void {
@@ -67,6 +76,7 @@ export class MyNestComponent implements OnInit {
         console.log('obj conversation afeter map.')
         console.log(this.conversation);
         this.test();
+        this.setScrollAtTheEnd();
       }
     );
 
@@ -79,6 +89,20 @@ export class MyNestComponent implements OnInit {
     this.formNewText.reset({
       newText: ''
     });
+    const newMessage: Message = {
+      createdAt: new Date(),
+      createdBy: 'test-user-2',
+      owner: true,
+      read: true,
+      message: this.formNewText.get('newText')?.value
+    };
+
+    // save throught
+    this.conversation.messages.push(newMessage);
+    setTimeout(() => {
+      this.setScrollAtTheEnd()
+    }, 30);
+
   }
 
   emptySummaryConversations() {
@@ -93,4 +117,26 @@ export class MyNestComponent implements OnInit {
       messages: []
     };
   }
+
+  setScrollAtTheEnd(): void {
+    //divDisplayConversation
+    const divMessages = document.getElementsByClassName('messageBoxDefault');
+    console.log({ divMessages });
+    if (divMessages !== null && divMessages !== undefined) {
+      console.log({ 'divMessages.length': divMessages.length });
+      const lastItem: any = divMessages[(divMessages.length - 1)];
+      console.log({ lastItem });
+      let topPost = lastItem.offsetTop;
+      console.log({ topPost });
+      //@ ts-ignore
+      const x = document.getElementById('divDisplayConversation');
+      console.log({ x });
+      if (x !== null && x !== undefined) {
+        x.scrollTop = topPost;
+      }
+      //document.getElementById('divDisplayConversation')?.scrollTop = topPost;
+    }
+  }
+
+
 }

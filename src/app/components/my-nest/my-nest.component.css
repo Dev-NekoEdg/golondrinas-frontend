@@ -29,6 +29,10 @@
   padding: 10px;
 }
 
+.messageBoxDefault{
+padding: 1%;
+}
+
 .messageBoxEmiter {
   background-color: rgb(43, 119, 226);
   margin: 1% 0% 1% 40%;
