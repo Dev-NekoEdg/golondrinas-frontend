@@ -1,23 +1,24 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnInit, AfterViewInit } from '@angular/core';
 import { SummaryConversations } from 'src/app/interfaces/summary-conversations';
 import { Message, UniqueConversation } from 'src/app/interfaces/unique-conversation';
 import { ConversationService } from 'src/app/services/conversation.service';
 import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
+import { ScrollToBottomDirective } from 'src/directives/scroll-to-bottom.directive';
 
 @Component({
   selector: 'app-my-nest',
   templateUrl: './my-nest.component.html',
   styleUrls: ['./my-nest.component.css']
 })
-export class MyNestComponent implements OnInit {
+export class MyNestComponent implements OnInit, AfterViewInit {
   private userId = 'mock-user-angularApp';
   public conversations: SummaryConversations[];
   public conversation: UniqueConversation;
   public conversationActive: boolean;
   public conversationId: string;
-  public formNewText: FormGroup;
-
-
+  public formNewText: FormGroup
+  //@ts-ignore
+  @ViewChild(ScrollToBottomDirective) scroll: ScrollToBottomDirective;
 
   constructor(
     private elRef: ElementRef,
@@ -30,26 +31,16 @@ export class MyNestComponent implements OnInit {
     this.conversationId = '';
     this.formNewText = this.createForm();
   }
-  ngAfterViewChecked(): void {
-    //divDisplayConversation
-    var div = this.elRef.nativeElement.querySelector('divDisplayConversation');
-    console.log('ngAfterViewChecked');
-    // console.log({name: 'divDisplayConversation', control: div});
-    // div.scrollTop = div.scrollHeight;
-    // throw new Error('Method not implemented.');
+  ngAfterViewInit(): void {
+    // setTimeout(() => {
+    //   this.setScrollAtTheEnd()
+    // }, 1000);
   }
 
   ngOnInit(): void {
     this.loadConversations();
-    this.test();
   }
-  test() {
-    console.log('scrollTop = scrollHeight');
-    const divConversation = document.getElementById('divDisplayConversation');
-    if (divConversation != null || divConversation != undefined) {
-      divConversation.scrollTop = divConversation.scrollHeight;;
-    }
-  }
+
   loadConversations() {
     this.service.getConversations(this.userId).subscribe(
       (data) => {
@@ -75,12 +66,12 @@ export class MyNestComponent implements OnInit {
         this.conversation.messages.forEach(item => { item.owner = (item.createdBy === this.userId) });
         console.log('obj conversation afeter map.')
         console.log(this.conversation);
-        this.test();
-        this.setScrollAtTheEnd();
       }
     );
 
-    // this.test();
+    setTimeout(() => {
+      this.setScrollAtTheEnd()
+    }, 500);
   }
 
   sendNewMessage() {
@@ -99,9 +90,9 @@ export class MyNestComponent implements OnInit {
 
     // save throught
     this.conversation.messages.push(newMessage);
-    setTimeout(() => {
-      this.setScrollAtTheEnd()
-    }, 30);
+    // setTimeout(() => {
+    //   this.setScrollAtTheEnd()
+    // }, 1000);
 
   }
 
@@ -133,6 +124,10 @@ export class MyNestComponent implements OnInit {
       console.log({ x });
       if (x !== null && x !== undefined) {
         x.scrollTop = topPost;
+        //@ts-ignore
+        document.getElementById('divDisplayConversation').scrollTop = topPost;
+        const t = document.getElementById('divDisplayConversation');
+        console.log({ t });
       }
       //document.getElementById('divDisplayConversation')?.scrollTop = topPost;
     }
