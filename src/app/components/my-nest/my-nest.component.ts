@@ -60,15 +60,16 @@ export class MyNestComponent implements OnInit {
         console.log(this.conversation);
       }
     );
-
+    setTimeout(() => {
+      this.scrollToTheEndConversation();
+    },
+      500);
   }
 
   sendNewMessage() {
     console.log('conversation id: ' + this.conversationId);
     console.log({ conversationId: this.conversationId, message: this.formNewText.get('newText')?.value });
-    this.formNewText.reset({
-      newText: ''
-    });
+
     const newMessage: Message = {
       createdAt: new Date(),
       createdBy: 'test-user-2',
@@ -80,6 +81,12 @@ export class MyNestComponent implements OnInit {
     // save throught
     this.conversation.messages.push(newMessage);
 
+    this.formNewText.reset({
+      newText: ''
+    });
+    setTimeout(() => {
+      this.scrollToTheEndConversation();
+    }, 200);
   }
 
   emptyConversations(): UniqueConversation {
@@ -91,7 +98,12 @@ export class MyNestComponent implements OnInit {
     };
   }
 
-
+  scrollToTheEndConversation() {
+    const htmlElement = document.getElementById('divDisplayConversation');
+    if (htmlElement !== null && htmlElement !== undefined) {
+      htmlElement.scrollIntoView(false);
+    }
+  }
 
 
 }

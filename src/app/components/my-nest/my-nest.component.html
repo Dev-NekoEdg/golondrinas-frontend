@@ -1,17 +1,16 @@
-<p>my-nest works!</p>
 <div class="row">
   <div class="col-4">
     <div class="listConversations">
       <div *ngFor="let conv of conversations" class="card cardHover" (click)="loadConversation(conv.id)">
         <div class="row g-0">
           <div class="col-sm-4 center">
-            <img src="{{conv.lastMessage?.profilePic}}" class="img-fluid rounded-circle" alt="...">
+            <img src="{{conv.lastMessage.profilePic}}" class="img-fluid rounded-circle" alt="...">
           </div>
           <div class="col-sm-8">
             <div class="d-block">
-              <span class="align-self-end">{{conv.lastMessage?.userName}}</span>
+              <span class="align-self-end">{{conv.lastMessage.userName}}</span>
               <div>id: {{conv.id}}</div>
-              <div>{{conv.lastMessage?.body | slice:0:15}}...</div>
+              <div>{{conv.lastMessage.body | slice:0:15}}...</div>
               <div class="text-muted align-self-end">{{conv.lastRead | date:'medium'}}</div>
               <!-- <h5>Card title</h5>
                 <p class="card-text">This content is a little bit longer.</p>
@@ -31,8 +30,8 @@
         </pre>
       </div> -->
       <div id="divDisplayConversation" *ngIf="conversationActive" class="h-100">
-        <div *ngFor="let message of conversation.messages" class="d-inline">
-          <div class="messageBoxDefault" [ngClass]="{'messageBoxEmiter':message.owner ,'messageBoxReciber': !message.owner}">
+        <div *ngFor="let message of conversation.messages" class="d-inline" >
+          <div [ngClass]="{'messageBoxEmiter':message.owner ,'messageBoxReciber': !message.owner}">
             <p>{{message.message}}</p>
             <div class="divInfoBubbleChat">
               <span class="smallDate">{{ message.createdAt | date:'dd/MM/yy, h:mm a' }}</span>
