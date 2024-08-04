@@ -30,7 +30,7 @@
           {{ this.conversations | json }}
         </pre>
       </div> -->
-      <div #divDisplayConversation  [scrollTop]="divDisplayConversation.scrollHeight" *ngIf="conversationActive" class="h-100">
+      <div id="divDisplayConversation" *ngIf="conversationActive" class="h-100">
         <div *ngFor="let message of conversation.messages" class="d-inline">
           <div class="messageBoxDefault" [ngClass]="{'messageBoxEmiter':message.owner ,'messageBoxReciber': !message.owner}">
             <p>{{message.message}}</p>
