@@ -10,6 +10,7 @@ import { AboutComponent } from './components/about/about.component';
 import { MyNestComponent } from './components/my-nest/my-nest.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HomeComponent,
     AboutComponent,
     MyNestComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

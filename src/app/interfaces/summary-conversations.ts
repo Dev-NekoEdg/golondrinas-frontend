@@ -1,5 +1,3 @@
-import { last } from "rxjs";
-
 export interface SummaryConversations {
   id: string;
   createdOn: Date;
