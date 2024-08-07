@@ -17,7 +17,7 @@
         </div>
       </div>
       <div class="mb-3 row">
-        <div class="alert alert-success" role="alert">
+        <div *ngIf="sendRequest" [ngClass]="responseLogin ?  'alert alert-success' : 'alert alert-danger' ">
           {{messageResponse}}
         </div>
       </div>
@@ -28,7 +28,3 @@
   </div>
 </div>
 
-
-<div class="alert alert-primary" role="alert">
-  A simple primary alert—check it out!
-</div>

@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
 
     const result = this.service.login(user, pass);
     console.log({ result });
-    this.sendRequest = result;
+    this.sendRequest = true;
     if (!result) {
       this.responseLogin = false;
       this.messageResponse = "User or password are incorrect...";
