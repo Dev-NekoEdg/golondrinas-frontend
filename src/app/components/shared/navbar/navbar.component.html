@@ -23,10 +23,24 @@
             <a class="nav-link" routerLinkActive="active" [routerLink]="['about']">About</a>
           </li>
         </ul>
-        <form class="d-flex" role="search">
+        <!-- <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
+        </form> -->
+        <div *ngIf="!currentUser?.userName">
+          <input type="button" value="Login" class="btn btn-success" (click)="login()" >
+        </div>
+        <div *ngIf="currentUser?.userName">
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+              Bienvenido {{currentUser?.userName}}
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Opciones de usuario</a></li>
+              <li><input type="button" class="dropdown-item" (click)="logout()" value="Logout"></li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </nav>

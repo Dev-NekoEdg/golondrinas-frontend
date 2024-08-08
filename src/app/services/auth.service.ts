@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Auth } from '../interfaces/auth';
-import { empty, Subject } from 'rxjs';
+import { BehaviorSubject, empty, Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -9,11 +9,11 @@ import { environment } from 'src/environments/environment';
 export class AuthService {
 
   private currentUser: Auth | undefined;
-  public currentUser$: Subject<Auth | undefined>;
+  private currentUser$: BehaviorSubject<Auth | undefined>;
 
   constructor() {
     this.currentUser = undefined;
-    this.currentUser$ = new Subject<Auth | undefined>();
+    this.currentUser$ = new BehaviorSubject<Auth | undefined>(undefined);
   }
 
   login(userName: string, password: string): boolean {
@@ -47,7 +47,7 @@ export class AuthService {
     }
   }
 
-  getLoggedUser(): void{
+  getLoggedUser(): Observable<Auth | undefined>{
     const user= localStorage.getItem(environment.loggedUser);
     if(user){
       this.currentUser = JSON.parse(user);
@@ -56,6 +56,8 @@ export class AuthService {
     else{
       this.currentUser$.next(undefined);
     }
+
+    return this.currentUser$.asObservable();
   }
 
   private defaultUser(): Auth {
