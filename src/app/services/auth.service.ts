@@ -36,28 +36,39 @@ export class AuthService {
     return res;
   }
 
-  logout(): boolean{
+  logout(): boolean {
     try {
       localStorage.removeItem(environment.loggedUser);
       this.currentUser$.next(undefined);
       return true;
     }
     catch {
-     return false;
+      return false;
     }
   }
 
-  getLoggedUser(): Observable<Auth | undefined>{
-    const user= localStorage.getItem(environment.loggedUser);
-    if(user){
+  getLoggedUser(): Observable<Auth | undefined> {
+    const user = localStorage.getItem(environment.loggedUser);
+    if (user) {
       this.currentUser = JSON.parse(user);
       this.currentUser$.next(this.currentUser);
     }
-    else{
+    else {
       this.currentUser$.next(undefined);
     }
 
     return this.currentUser$.asObservable();
+  }
+
+  validateAuthentication(): boolean {
+    if (this.currentUser?.accessToken !== null &&
+      this.currentUser?.accessToken !== undefined &&
+      this.currentUser?.accessToken !== ''
+    ) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   private defaultUser(): Auth {

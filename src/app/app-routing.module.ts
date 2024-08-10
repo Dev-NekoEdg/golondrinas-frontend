@@ -4,10 +4,11 @@ import { HomeComponent } from './components/home/home.component';
 import { MyNestComponent } from './components/my-nest/my-nest.component';
 import { AboutComponent } from './components/about/about.component';
 import { LoginComponent } from './components/login/login.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {path:"home", component: HomeComponent, pathMatch: "full"},
-  {path:"myNest", component: MyNestComponent, pathMatch: "full"},
+  {path:"myNest", component: MyNestComponent, pathMatch: "full", canActivate:[ AuthGuard ]},
   {path:"about", component: AboutComponent, pathMatch: "full"},
   {path:"login", component: LoginComponent, pathMatch: "full"}
 
